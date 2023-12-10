@@ -9,7 +9,7 @@ public class Main {
             int W = sc.nextInt();
             int N = sc.nextInt();
             int a = N/H;
-            int b =  N%H==0 ? H*100:(N%H) * 100+1;
+            int b = N%H==0 ? H*100:(N%H) * 100+1;
 
             System.out.println(a+b);
         }
