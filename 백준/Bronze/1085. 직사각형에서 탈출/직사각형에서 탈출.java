@@ -8,12 +8,9 @@ public class Main {
         int w = Integer.valueOf(a[2]);
         int h = Integer.valueOf(a[3]);
 
-        int garo = (w-x);
-        int sero = (h-y);
+        int garo = Math.min((w-x),x);
+        int sero = Math.min((h-y),y);
 
-        if (x < garo) garo = x;
-        if (y < sero) sero = y;
-
-        System.out.println(garo <= sero ? garo:sero);
+        System.out.println(Math.min(garo,sero));
     }
 }
