@@ -11,9 +11,6 @@ public class Main {
         int garo = (w-x);
         int sero = (h-y);
 
-        if (garo < 0) garo *= -1;
-        if (sero < 0) sero *= -1;
-
         if (x < garo) garo = x;
         if (y < sero) sero = y;
 
