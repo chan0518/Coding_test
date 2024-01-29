@@ -17,7 +17,8 @@ public class Main {
                 }
             }
         }
+        ++x; ++y;
         System.out.println(max);
-        System.out.println(++y +" "+ ++x);
+        System.out.println(y+" "+x);
     }
 }
