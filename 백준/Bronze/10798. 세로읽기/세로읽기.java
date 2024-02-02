@@ -1,6 +1,4 @@
 import java.io.*;
-import java.nio.Buffer;
-import java.util.*;
 
 public class Main{
     public static void main(String[] args) throws IOException {
@@ -24,8 +22,8 @@ public class Main{
 
         for (int j=0; j<15; j++){
             for (int i=0; i<5; i++){
-                if ("#".equals(array1[i][j])) continue;
-                bw.write(array1[i][j]);
+                if ("#".equals(array1[i][j])) continue;//값에 #이 나오면 continue로 인해 스킵됌
+                bw.write(array1[i][j]);//#이 안나오면 밑에 #대신 바꿔넣은값이 출력됌
                 bw.flush();
             }
         }
