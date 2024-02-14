@@ -2,29 +2,41 @@ import java.io.*;
 import java.util.*;
 
 public class Main {
+    public static class Person {
+        int age;
+        String name;
+
+        public Person(int age, String name) {
+            this.age = age;
+            this.name = name;
+        }
+        public int getAge() {
+            return age;
+        }
+        public String getName() {
+            return name;
+        }
+    }
+
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
         int N = Integer.valueOf(br.readLine());
 
-        String arr[][] = new String[N][3];
+        Person p[] = new Person[N];
 
         for (int i=0; i<N; i++){
             String a[] = br.readLine().split(" ");
-            arr[i][0] = a[0];
-            arr[i][1] = a[1];
-            arr[i][2] = String.valueOf(i+1);
+            p[i] = new Person(Integer.valueOf(a[0]), a[1]);
         }
 
-        Arrays.sort(arr, Comparator
-                .comparingInt((String[] person) -> Integer.valueOf(person[0])));
-//                .thenComparing(person -> person[2]));
+        Arrays.sort(p, Comparator.comparingInt(Person::getAge));
+
         for (int i=0; i<N; i++){
-            bw.write((arr[i][0])+" "+arr[i][1]);
+            bw.write(p[i].age+" "+p[i].name);
             bw.newLine();
         }
-        br.close();
         bw.close();
     }
 }
