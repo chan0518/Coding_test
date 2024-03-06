@@ -6,7 +6,7 @@ public class Main {
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
         int K = Integer.valueOf(br.readLine());
-        int arr[] = new int[K+1];
+        int arr[] = new int[K];
 
         int idx = -1;
         for (int i=0; i<K; i++){
@@ -20,7 +20,7 @@ public class Main {
 
         int sum = 0;
         int i = 0;
-        while (arr[i] != 0){//arr값이 0이 아니라면 반복문 실행
+        while (i < K && arr[i] != 0){//arr값이 0이 아니라면 반복문 실행
             sum += arr[i];//sum에다가 arr에 있는 숫자값들의 합을 저장
             i++;
         }
