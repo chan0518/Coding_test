@@ -1,37 +1,31 @@
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
 
 public class Main {
-    public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-        String[] input1 = in.nextLine().split(" ");
-        int K = Integer.valueOf(input1[0]);
-        int N = Integer.valueOf(input1[1]);
-        int[] arr = new int[K];
-        long max = 0;
-        // 입력과 동시에 해당 랜선의 길이가 최댓값인지를 확인하고 max를 갱신
-        for (int i = 0; i < K; i++) {
-            arr[i] = in.nextInt();
-            if(max < arr[i]) {
-                max = arr[i];
-            }
-        }
-        max++;
-        long min = 0; // 탐색 길이 최솟값
-        long mid = 0;
-        
-        while (min < max) {
-            mid = (max + min) / 2;
-            
-            long count = 0;
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-            for (int i = 0; i < arr.length; i++) {
-                count += (arr[i] / mid);
-            }
+        String[] str = br.readLine().split(" ");
+        int K = Integer.valueOf(str[0]);
+        int N = Integer.valueOf(str[1]);
 
-            if(count < N) max = mid;
-            else min = mid + 1;
+        long[] arr = new long[K];
+        for (int i = 0; i < K; i++) arr[i] = Long.valueOf(br.readLine());//랜선 입력
+        Arrays.sort(arr);//랜선 길이별 정렬
+
+        long left = 1;
+        long right = arr[arr.length - 1];
+
+        while (left <= right) {
+            int sum = 0;//랜선 갯수
+            long mid = (left + right) / 2;
+            for (int i = 0; i < K; i++) sum += (int)(arr[i] / mid);//mid의 길이로 랜선 갯수 세기
+
+            if (sum < N) right = mid - 1;//랜선갯수가 N보다 작다면 랜선의 크기가 크니까 랜선최대값을 줄여야함
+            else left = mid + 1;
         }
-        // UpperBound로 얻어진 값(min)에 -1이 최대 길이가 된다.
-        System.out.println(min - 1);
+        System.out.println(left-1);
     }
 }
