@@ -1,22 +1,25 @@
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.*;
 
-class Solution{
-    public static void main(String args[]) throws Exception {
-        Scanner sc = new Scanner(System.in);
-        int T = sc.nextInt();
+class Solution {
+    public static void main(String args[]) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int T = Integer.valueOf(br.readLine());
 
         for (int test_case = 1; test_case <= T; test_case++) {
-            int num = sc.nextInt();
-            List<Integer> list = new ArrayList<>();
+            //여기 사이에 코드를 넣을 것
 
-            // 2를 제외한 모든 짝수를 제거
-            while (num % 2 == 0){
+            int num = Integer.valueOf(br.readLine());
+            List<Integer> list = new ArrayList<>();
+            while (num % 2 == 0) {
                 list.add(2);
                 num /= 2;
-            }
+            }//num의 2의 약수만 구함
 
-            // 3부터 시작하여 소수만 확인
-            for (int i = 3; i * i <= num; i += 2){
+            for (int i = 3; i * i <= num; i += 2) {
                 while (num % i == 0) {
                     list.add(i);
                     num /= i;
@@ -27,17 +30,19 @@ class Solution{
 
             Set<Integer> set = new HashSet<>(list);
             List<Integer> result_li = new ArrayList<>();
-            for (int e1: set){
+            for (int e1 : set) {
                 int cnt = 0;
-                for (int e2: list){
-                    if (e1 == e2) cnt ++;
+                for (int e2 : list) {
+                    if (e1 == e2) cnt++;
                 }
                 if (cnt % 2 == 1) result_li.add(e1);
             }
 
             int result = 1;
-            for (int e: result_li) result *= e;
+            for (int e : result_li) result *= e;
             System.out.printf("#%d %d\n", test_case, result);
+
+            //여기사이에 코드를 넣을 것
         }
     }
 }
