@@ -8,42 +8,43 @@ public class Main {
         String[] day = br.readLine().split(" ");
         int[] dd = new int[14];
         for(int i=0; i<14; i++) dd[i] = Integer.valueOf(day[i]);
-        int sung = money;
         int joon = money;
-        int sj = 0;//성민이의 주식 갯수
+        int sung = money;
         int jj = 0;//준현이의 주식 갯수
-        
+        int sj = 0;//성민이의 주식 갯수
+
+        //준현이의 매매 알고리즘
         for(int i=0; i<14; i++){
-            if(dd[i] <= sung) {
-                sj = sung/dd[i];
-                sung%=dd[i];
+            if(dd[i] <= joon) {
+                jj = joon/dd[i];
+                joon%=dd[i];
                 break;
             }
         }
-        sung += sj * dd[13];
+        joon += jj * dd[13];
 
-        boolean joonTF = true;
+        //성민이의 매매 알고리즘
         int idx = 0;
         for(int i=3; i<14; i++){
             if(dd[i-3] > dd[i-2] && dd[i-2] > dd[i-1] && dd[i-1] > dd[i] && dd[i] < joon){
-                jj += joon/dd[i];
-                joon = joon%dd[i];
+                sj += sung/dd[i];
+                sung = sung%dd[i];
                 idx = i;
             } 
         }
         boolean TF = false;
         for(int i=idx; i<11; i++) {
             if(dd[i] < dd[i+1] && dd[i+1] < dd[i+2] && dd[i+2] < dd[i+3]){
-                joon += jj*dd[i+3];
+                sung += sj*dd[i+3];
                 TF=true;
                 break;
             }
         }
         
-        if(!TF) joon += jj*dd[13];
+        if(!TF) sung += sj*dd[13];
         
-        if(joon < sung) System.out.println("BNP");
-        else if(sung < joon) System.out.println("TIMING");
+        if(joon > sung) System.out.println("BNP");
+        else if(sung > joon) System.out.println("TIMING");
         else System.out.println("SAMESAME");
         
         /*
