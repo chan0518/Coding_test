@@ -25,6 +25,7 @@ public class Main {
 				if(obtain[idx])//장애물이 true이기 때문에 장애물을 만나면 break
 					continue Loo1;
 				else obtain[idx] = true;
+                //방문한곳에 또 방문하면 무한루프이므로 true를 해줌
 			}
 			K=i;//장애물을 만나지 않았다면 i가 K가 된다
 			break;
