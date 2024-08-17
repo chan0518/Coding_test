@@ -10,7 +10,7 @@ public class Main {
 	static int cnt[] = new int[4];// 0000
 	static int result = 0;
 
-	public static boolean check() {
+	public static boolean check() {//참이면 만들 수 있음
 		for (int i = 0; i < 4; i++) {
 			if (cnt[i] < ACGT_cnt[i])
 				return false;
@@ -30,17 +30,17 @@ public class Main {
 		for (int i = 0; i < 4; i++)
 			ACGT_cnt[i] = Integer.valueOf(st.nextToken());// 필요한 ACGT갯수
 
-		String str = DNA.substring(0, len);
+		String str = DNA.substring(0, len);//substring으로 부분 문자열을 만듦
 		String a[] = str.split("");// 부분 문자열의 배열
 		for (int i = 0; i < a.length; i++) {
 			for (int j = 0; j < 4; j++) {// ACGT중 포함하는게 있다면 증가
-				if (a[i].equals(ACGT[j])) {
+				if (a[i].equals(ACGT[j])) {//a[i]가 ACGT와 같다면 그 위치에 cnt증가
 					cnt[j]++;
 					break;
 				}
 			}
 		}
-		if (check())
+		if (check())//check해서 true라면 result증가
 			result++;
 
 		String dna[] = DNA.split("");// 문자열의 배열
@@ -63,18 +63,6 @@ public class Main {
 			if (check()) {
 				result++;
 			}
-//			if (i == 1) {
-//				System.out.println(Arrays.toString(cnt));
-//				System.out.println("========");
-//				System.out.println(dna[i]);
-//				System.out.println(dna[len - 1 + i]);
-//			}
-//			if (i == 0) {
-//				System.out.println(Arrays.toString(cnt));
-//				System.out.println("========");
-//				System.out.println(dna[i]);
-//				System.out.println(dna[len - 1 + i]);
-//			}
 		}
 		System.out.println(result);
 	}
