@@ -13,7 +13,7 @@ public class Main {
     static int[][] map;
     static boolean[] selected;
     static int[] archers;
-    static int maxKillCount = 0;
+    static int cnt = 0;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -34,13 +34,13 @@ public class Main {
         selected = new boolean[M];
         dfs(0, 0);
         
-        System.out.println(maxKillCount);
+        System.out.println(cnt);
     }
 
     // 조합을 생성하는 DFS 함수
     static void dfs(int depth, int start) {
         if (depth == 3) {
-            maxKillCount = Math.max(maxKillCount, simulate());
+            cnt = Math.max(cnt, simulate());
             return;
         }
         
@@ -57,10 +57,10 @@ public class Main {
             System.arraycopy(map[i], 0, tempMap[i], 0, M);
         }
 
-        int killCount = 0;
+        int killCnt = 0;
         
         for (int round = 0; round < N; round++) {
-            boolean[][] targetMarked = new boolean[N][M];
+            boolean[][] targetMark = new boolean[N][M];
             List<int[]> targets = new ArrayList<>();
             
             for (int i = 0; i < 3; i++) {
@@ -70,7 +70,7 @@ public class Main {
             
             for (int[] target : targets) {
                 if (target != null && tempMap[target[0]][target[1]] == 1) {
-                    killCount++;
+                    killCnt++;
                     tempMap[target[0]][target[1]] = 0;
                 }
             }
@@ -78,28 +78,27 @@ public class Main {
             moveEnemies(tempMap);
         }
         
-        return killCount;
+        return killCnt;
     }
 
     // 주어진 궁수 위치에서 가장 가까운 적을 찾는 함수
     static int[] findTarget(int[][] map, int archerCol) {
-        int minDistance = D + 1;
+        int minD = D + 1;
         int[] target = null;
         
         for (int r = N - 1; r >= 0; r--) {
             for (int c = 0; c < M; c++) {
                 if (map[r][c] == 1) {
                     int distance = Math.abs(N - r) + Math.abs(archerCol - c);
-                    if (distance < minDistance) {
-                        minDistance = distance;
+                    if (distance < minD) {
+                        minD = distance;
                         target = new int[] {r, c};
-                    } else if (distance == minDistance && target != null && c < target[1]) {
+                    } else if (distance == minD && target != null && c < target[1]) {
                         target = new int[] {r, c};
                     }
                 }
             }
         }
-        
         return target;
     }
 
