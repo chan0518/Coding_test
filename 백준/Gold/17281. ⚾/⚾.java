@@ -38,13 +38,12 @@ public class Main {
     		boolean[] bases = new boolean[3]; // 1루, 2루, 3루
     		int out = 0;
     		while(out < 3) {
-    			int hitter = arr[i][list.get(idx)];
+    			int hitter = arr[i][list.get(idx)];// 1 ~ 4
     			idx = (idx + 1) % 9;
     			
     			if(hitter == 0) { // 아웃
     				out++;
     			} else { // 안타, 2루타, 3루타, 홈런
-    				// 주자들 이동 처리
     				point += moveRunners(bases, hitter);
     			}
     		}
@@ -52,7 +51,7 @@ public class Main {
     	max = Math.max(max, point);
     }
     
-    static int moveRunners(boolean[] bases, int hit) {
+    static int moveRunners(boolean[] bases, int hit) {// bases는 현재 1~3루에 사람이 있는지, hit은 몇 루타를 쳤는지
     	int score = 0;
     	// 홈런일 경우 모든 주자가 홈으로 돌아옴
     	if (hit == 4) {
@@ -75,7 +74,6 @@ public class Main {
     				bases[i] = false;
     			}
     		}
-    		// 타자가 타석에서 시작하는 이동
     		if (hit < 4) {
     			bases[hit - 1] = true;
     		}
