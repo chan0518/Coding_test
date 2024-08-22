@@ -1,10 +1,6 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Scanner;
 import java.util.StringTokenizer;
 
 public class Main {
@@ -45,8 +41,10 @@ public class Main {
             if(visited[i][c-1]) ++cnt;
         }
         
+//        info();// visited 출력
         System.out.println(cnt);
     }
+
     
     static void dfs(int x, int y) {
     	visited[x][y] = true;
@@ -67,4 +65,12 @@ public class Main {
             }
         }
     }
+    
+//    //출력 함수
+//    static void info() {
+//        for (boolean[] l : visited) {
+//            System.out.println(Arrays.toString(l));
+//        }//출력
+//    }
+    
 }
