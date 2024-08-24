@@ -1,3 +1,4 @@
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -7,7 +8,6 @@ class Solution {
     static StringBuilder sb = new StringBuilder();
     static int T, N, B;
     static int[] arr;
-    static boolean[] visited;
     static int result;
     static ArrayList<Integer> li;
     
@@ -25,7 +25,6 @@ class Solution {
             N = Integer.valueOf(st.nextToken());
             B = Integer.valueOf(st.nextToken());
             arr = new int[N];
-            visited = new boolean[N];
             li = new ArrayList<>();
             result = Integer.MAX_VALUE;
             
@@ -56,11 +55,8 @@ class Solution {
     		return;
     	}
     	for(int i=start; i<N; i++) {
-    		if(visited[i]) continue;
-    		visited[i] = true;
     		li.add(arr[i]);
     		dfs(i+1);
-    		visited[i] = false;
     		li.remove(li.size()-1);
     	}
     }
