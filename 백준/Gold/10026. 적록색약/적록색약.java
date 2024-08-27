@@ -1,6 +1,8 @@
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayDeque;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -14,7 +16,7 @@ public class Main {
 	static int cntRG = 0;
 	static boolean[][] visited;
 	static boolean[][] visitedRG;
-	static Queue<int[]> q = new LinkedList();
+	static Queue<int[]> q = new ArrayDeque<>();
 	static final int[][] DIRECTION = {
 			{-1,0},//위
 			{1,0},//아래
