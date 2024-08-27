@@ -1,9 +1,6 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
@@ -36,9 +33,9 @@ public class Main {
 				map[i][j] = Integer.valueOf(st.nextToken());
 			}
 		}
-		while(!isZero()) {
+		while(true) {
 			bfs(0,0);
-			two_zero();
+			twoDel();
 			if(!existOne()) {
 				System.out.println(cnt);
 				System.out.println(cheese);
@@ -53,8 +50,8 @@ public class Main {
 		}
 		return false;
 	}
-	public static void two_zero() {
-		cheese = 0;
+	public static void twoDel() {
+		cheese = 0;//치즈 갯수 0으로 초기화
 		for(int i=0; i<N; i++) {
 			for(int j=0; j<M; j++) {
 				if(map[i][j] == 2) {
@@ -63,12 +60,6 @@ public class Main {
 				}
 			}
 		}
-	}
-	public static boolean isZero() {
-		for(int i=0; i<N; i++) {
-			for(int j=0; j<M; j++) if(map[i][j] != 0) return false;
-		}
-		return true;
 	}
 	
 	public static void bfs(int startX, int startY) {
@@ -96,24 +87,4 @@ public class Main {
 			}
 		}
 	}
-
-//	static void info(int[][] map) {
-//		for(int[] e1: map) {
-//			for(int e2: e1) {
-//				System.out.print(e2+" ");
-//			}
-//			System.out.println();
-//		}
-//		System.out.println();
-//	}
-//	static void info(boolean[][] visited) {
-//		for(boolean[] e1: visited) {
-//			for(boolean e2: e1) {
-//				System.out.print(e2+"\t");
-//			}
-//			System.out.println();
-//		}
-//		System.out.println();
-//	}
-
 }
