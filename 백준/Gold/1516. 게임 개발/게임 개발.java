@@ -1,7 +1,7 @@
 import java.io.BufferedReader;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -42,11 +42,10 @@ public class Main {
                 inDegree[i]++; // i 건물의 진입 차수를 증가
                 num = Integer.parseInt(st.nextToken());
             }
-        }// 입력 완료
-
-        // 위상 정렬을 위한 큐를 생성
-        Queue<Integer> q = new LinkedList<>();
-        // 각 건물의 최소 건설 시간을 저장할 배열
+        }//================= 입력 완료 =====================
+        
+        Queue<Integer> q = new ArrayDeque<>();
+        
         int[] minTime = new int[N + 1];
 
         // 인디그리가 0인 노드를 큐에 추가하고, 해당 건물의 최소 건설 시간 초기화
@@ -55,13 +54,14 @@ public class Main {
                 q.offer(i);
                 minTime[i] = time[i];
             }
-        }
-
-        // 큐가 비어있지 않을 때까지 반복
+        }// 인디그리가 0이 라면 선행작업이 없으므로 바로 minTime에 time값을 넣어줌
+        
+        // 위상정렬
         while (!q.isEmpty()) {
-            int node = q.poll(); // 큐에서 노드를 꺼냄
+            int node = q.poll();
             // 현재 노드의 모든 후속 작업을 처리
             for (int next : graph.get(node)) {
+            	// 1번 작업이 빠졌으므로 1번 작업이 선행작업이던 다른 작업들의 인디그리를 감소시킴
                 inDegree[next]--; // 후속 작업의 인디그리 감소
                 // 후속 작업의 최소 건설 시간을 업데이트
                 minTime[next] = Math.max(minTime[next], minTime[node] + time[next]);
