@@ -8,10 +8,10 @@ public class Main {
     static int[] distance, connect;
     static int INF = (int)1e9;
     static class Edge implements Comparable<Edge>{
-        int a;
+        int num;
         int dis;
-        public Edge(int a, int dis){
-            this.a = a;
+        public Edge(int num, int dis){
+            this.num = num;
             this.dis = dis;
         }
         @Override
@@ -64,13 +64,13 @@ public class Main {
         while (!pq.isEmpty()){
             Edge edge = pq.poll();
 
-            if(edge.dis > distance[edge.a]) continue;
+            if(edge.dis > distance[edge.num]) continue;
 
-            for(Edge e : list[edge.a]){
-                if(distance[e.a] > e.dis + edge.dis){
-                    distance[e.a]  = e.dis + edge.dis;
-                    connect[e.a] = edge.a;
-                    pq.add(new Edge(e.a, distance[e.a]));
+            for(Edge e : list[edge.num]){
+                if(distance[e.num] > e.dis + edge.dis){
+                    distance[e.num]  = e.dis + edge.dis;
+                    connect[e.num] = edge.num;
+                    pq.add(new Edge(e.num, distance[e.num]));
                 }
             }
         }
