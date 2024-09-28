@@ -33,16 +33,13 @@ public class Main {
         while (true) {
         	int[] startXY = findStart();
         	
-        	if(startXY[0] <0) {
+        	if(startXY[0] <0) {//만약 map이 모두0이라면 -1을 반환하므로 0출력
         		System.out.println(0);
         		return;
         	}
         	
         	int c = check(startXY);
         	int f = fuzeAndIcebergCnt(startXY);
-//        	System.out.println(c + " " + f);
-//        	System.out.println();
-//        	for(int[] e : map) System.out.println(Arrays.toString(e));
             
             if (c != f) {// 전체 빙하의 면적 개수랑 빙하가 bfs로 세어진 갯수가 다르다면 2개이상으로 분리된 것
                 System.out.println(time);
@@ -74,32 +71,6 @@ public class Main {
     	}
     	return cnt;
     }
-
-//    static int check(int[] start) { // 빙산 덩어리 체크
-//        Queue<int[]> q = new ArrayDeque<>();
-//        boolean[][] visited = new boolean[N][M];
-//        q.add(start);
-//        visited[start[0]][start[1]] = true;
-//        int cnt = 1;
-//
-//        while (!q.isEmpty()) {
-//            int[] cur = q.poll();
-//            int x = cur[0];
-//            int y = cur[1];
-//
-//            for (int[] d : D) {
-//                int nx = x + d[0];
-//                int ny = y + d[1];
-//
-//                if (nx >= 0 && nx < N && ny >= 0 && ny < M && map[nx][ny] > 0 && !visited[nx][ny]) {
-//                    q.add(new int[]{nx, ny});
-//                    visited[nx][ny] = true;
-//                    ++cnt;
-//                }
-//            }
-//        }
-//        return cnt;
-//    }
 
     static int fuzeAndIcebergCnt(int[] startXY) { // 빙산을 녹이고 녹인 빙산의 개수를 세어줌
     	Queue<int[]> q = new ArrayDeque<>();
@@ -137,4 +108,3 @@ public class Main {
     	return icebergCnt;
     }
 }
-
