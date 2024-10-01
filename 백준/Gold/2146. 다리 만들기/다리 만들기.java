@@ -106,6 +106,7 @@ public class Main {
                             visited[nx][ny] = true;
                         } else if (map[nx][ny] != num) {
                             result = Math.min(result, dep); // 다른 대륙을 만날 때
+                            return;
                         }
                     }
                 }
