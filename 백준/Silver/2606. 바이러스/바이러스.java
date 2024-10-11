@@ -40,7 +40,6 @@ public class Main {
             int cur = q.poll();
 
             if(hm.get(cur) != null){
-
                 for(int i=0; i<hm.get(cur).size(); i++){
                     int num = hm.get(cur).get(i);
                     if(!visited[num]){
@@ -49,7 +48,6 @@ public class Main {
                         ++cnt;
                     }
                 }
-
             }
         }
         return cnt;
