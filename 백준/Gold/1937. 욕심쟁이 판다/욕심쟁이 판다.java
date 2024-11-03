@@ -46,7 +46,6 @@ public class Main {
         	
         	if (map[x][y] < map[nx][ny]) {
                 dp[x][y] = Math.max(dp[x][y], dfs(nx, ny) + 1);
-                dfs(nx, ny);
             }
         }
         return dp[x][y];
