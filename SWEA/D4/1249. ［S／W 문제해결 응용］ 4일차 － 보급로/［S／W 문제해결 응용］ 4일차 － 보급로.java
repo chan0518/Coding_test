@@ -49,16 +49,16 @@ class Solution{
 	}
 	
 	static void bfs() {
-		PriorityQueue<int[]> q = new PriorityQueue<>((a,b) -> Integer.compare(a[2],b[2]));
-		q.add(new int[] {0,0,0}); // x, y, 시간
+		PriorityQueue<Node> q = new PriorityQueue<>();
+		q.add(new Node(0,0,0)); // x, y, 시간
 		memo[0][0] = 0;
 		result = 0;
 		
 		while(!q.isEmpty()) {
-			int[] cur = q.poll();
-			int x = cur[0];
-			int y = cur[1];
-			int w = cur[2];
+			Node cur = q.poll();
+			int x = cur.x;
+			int y = cur.y;
+			int w = cur.w;
 			
 			if(x == N-1 && y == N-1) result = w;
 			
@@ -69,27 +69,24 @@ class Solution{
 				if(nx < 0 || ny < 0 || nx >= N || ny >= N) continue;
 				if(memo[nx][ny] != Integer.MAX_VALUE) continue; // 방문했다면 방문안함
 				memo[nx][ny] = w + map[nx][ny];
-				q.add(new int[] {nx,ny, w + map[nx][ny]});
+				q.add(new Node(nx,ny,w + map[nx][ny]));
 			}
 		}
 	}
 }
-
-
-/*
-
-2
-4
-0100
-1110
-1011
-1010
-6
-011001
-010100
-010011
-101001
-010101
-111010
-
-*/
+class Node implements Comparable<Node> {
+    int x;
+    int y;
+    int w;
+ 
+    Node(int x, int y, int w) {
+        this.x = x;
+        this.y = y;
+        this.w = w;
+    }
+ 
+    @Override
+    public int compareTo(Node o) {
+        return w - o.w;
+    }
+}
