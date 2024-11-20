@@ -18,12 +18,6 @@ public class Main {
 	static boolean[] visited;
 	static List<Integer> li = new ArrayList<>();
 	static HashMap<Integer, ArrayList<Integer>> hm = new HashMap<>(); // 양방향 그래프
-	static int[][] D = {
-			{-1, 0},	// 상
-			{1, 0},		// 하
-			{0, -1},	// 좌
-			{0, 1},		// 우
-	};
 	
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		st = new StringTokenizer(br.readLine());
@@ -43,9 +37,8 @@ public class Main {
 		}
 		
 		visited = new boolean[N+1];
-		int cnt = 0;
 		visited[V] = true;
-		dfs(V, cnt);
+		dfs(V);
 		
 		sb.append("\n");
 
@@ -53,13 +46,13 @@ public class Main {
 		bfs(V);
 
 		System.out.println(sb.toString());
+		
+//		System.out.println(hm);
 	}
 	
-	static void dfs(int a, int cnt) {
-		if(cnt == N) return;
+	static void dfs(int x) {
 		
-		int x = a;
-		if (hm.get(x) == null) hm.put(x, new ArrayList<>());  // 정점 x가 없는 경우 빈 리스트 추가
+		if(hm.get(x) == null) hm.put(x, new ArrayList<>());
 		Collections.sort(hm.get(x));
 		int size = hm.get(x).size();
 		
@@ -70,7 +63,7 @@ public class Main {
 			
 			if(visited[nx]) continue;
 			visited[nx] = true;
-			dfs(nx, cnt + 1);
+			dfs(nx);
 		}
 	}
 
