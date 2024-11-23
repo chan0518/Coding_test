@@ -10,11 +10,12 @@ public class Main {
     static StringTokenizer st;
     static int N, M, S, E, result;
     static List<List<Edge>> graph = new ArrayList<>(); // 양방향 그래프
+    
     static class Edge {
-        int target, weight;
-        Edge(int target, int weight) {
-            this.target = target;
-            this.weight = weight;
+        int e, w;
+        Edge(int e, int w) {
+            this.e = e;
+            this.w = w;
         }
     }
 
@@ -51,10 +52,6 @@ public class Main {
         PriorityQueue<int[]> pq = new PriorityQueue<>((a, b) -> Integer.compare(a[1], b[1]));
         pq.add(new int[] {S, 0}); // 출발 노드, 가중치 0으로 시작
 
-        int[] dist = new int[N + 1]; // 각 노드로의 최소 가중치
-        Arrays.fill(dist, Integer.MAX_VALUE); // 최단 거리를 무한대로 초기화
-        dist[S] = 0; // 출발 노드의 거리는 0
-
         boolean[] visited = new boolean[N + 1]; // 방문 여부 체크
 
         while (!pq.isEmpty()) {
@@ -74,12 +71,11 @@ public class Main {
 
             // 인접 노드들에 대해 최단거리 갱신
             for (Edge edge : graph.get(n)) {
-                int next = edge.target;
-                int newWeight = w + edge.weight;
+                int next = edge.e;
+                int newWeight = w + edge.w;
 
-                // 만약 새로 구한 가중치가 기존보다 더 작으면 갱신
-                if (newWeight < dist[next]) {
-                    dist[next] = newWeight;
+                // 인접 노드를 큐에 넣을 때, 이미 방문한 노드가 아니라면 큐에 넣는다
+                if (!visited[next]) {
                     pq.add(new int[] {next, newWeight});
                 }
             }
