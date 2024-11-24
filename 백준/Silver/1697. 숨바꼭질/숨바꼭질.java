@@ -23,7 +23,7 @@ public class Main {
     }
     
     static void bfs(int start) {
-    	boolean[] visited = new boolean[150001];
+    	boolean[] visited = new boolean[100001];
     	Queue<int[]> q = new ArrayDeque<>();
     	q.add(new int[] {start, 0});
     	
@@ -34,7 +34,7 @@ public class Main {
 //    		System.out.println("num: " + num + ", time: " + time);
     		
     		if(num < 0) continue;
-    		if(num > 150000) continue;
+    		if(num > 100000) continue;
     		if(visited[num]) continue;// 방문했던 곳이면 리턴
     		visited[num] = true;
     		
