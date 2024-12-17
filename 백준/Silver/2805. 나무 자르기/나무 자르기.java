@@ -31,13 +31,20 @@ public class Main{
 
 		while(L <= R) {
 			int mid = (L + R) / 2;
+			long len = cal(mid); // 자른 나무 길이
 			
-			if (cal(mid) >= M) { // 잘린 나무가 M보다 크거나 같으면
-                res = mid; // 최대 높이 갱신
-                L = mid + 1; // 더 큰 높이를 탐색
-            } else {
-                R = mid - 1; // 나무가 부족하면 더 낮은 높이 탐색
-            }
+			if(len < M) R = mid - 1;
+			if(len > M) {
+				res = mid;
+				L = mid + 1;
+			}
+			if(len == M) {
+				res = mid;
+				break;
+			}
+			
+//			System.out.println(mid);
+//			System.out.println(len);
 			
 		}
 		System.out.println(res);
@@ -50,17 +57,3 @@ public class Main{
 	}
 	
 }
-
-
-
-
-/*
-
-4 8
-20 15 10 17
-
-4 6
-20 15 10 17
-
-
-*/
