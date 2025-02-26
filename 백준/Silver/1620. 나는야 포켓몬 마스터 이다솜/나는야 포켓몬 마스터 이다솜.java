@@ -16,14 +16,13 @@ public class Main {
         N = Integer.parseInt(st.nextToken());
         M = Integer.parseInt(st.nextToken());
 
-
         for (int i = 1; i <= N; i++) {
             st = new StringTokenizer(br.readLine());
             String str = st.nextToken();
-            poketmon.put(i+"", str);
-            poketmon.put(str, i+"");
+            String num = String.valueOf(i);
+            poketmon.put(num, str);
+            poketmon.put(str, num);
         }
-
         for(int i = 0; i < M; i++) {
             st = new StringTokenizer(br.readLine());
             String value = st.nextToken();
